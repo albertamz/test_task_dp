@@ -1,5 +1,0 @@
-[flake8]
-ignore = D203,F541,F403,F405, W503
-exclude = .git,__pycache__,docs/source/conf.py,old,build,dist,venv,env,temp_file,manage.py,_.py,*/migrations/*
-max-line-length = 159
-inline-quotes = "

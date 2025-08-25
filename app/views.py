@@ -1,12 +1,7 @@
 from django.http import JsonResponse
-from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
 from db.models import *
-
-
-def index(request):
-    return render(request, "index.html", {"data": 123})
 
 
 @csrf_exempt

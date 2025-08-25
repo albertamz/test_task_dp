@@ -11,6 +11,5 @@ pathspec==0.11.1
 platformdirs==3.8.0
 pycodestyle==2.10.0
 pyflakes==3.0.1
-python-decouple==3.5
 pytz==2023.3
 sqlparse==0.4.4

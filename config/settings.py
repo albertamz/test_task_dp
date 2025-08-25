@@ -2,17 +2,12 @@ import os
 from datetime import datetime
 from pathlib import Path
 
-from decouple import config  # noqa
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = config("SECRET_KEY")
-DEBUG = config("DEBUG", default=False, cast=bool)
-ENVIRONMENT = config("ENVIRONMENT")
+SECRET_KEY = '6x0*&)@#53!=b_^wdyoale@7fh18v)*!4v&+!-903)j9yf8r)c'
+DEBUG = True
 
-ALLOWED_HOSTS = config(
-    "ALLOWED_HOSTS", cast=lambda v: [s.strip() for s in v.split(",")]
-)
-DOMAIN = f"http{'s' if config('HTTPS',default=False, cast=bool) else ''}://{ALLOWED_HOSTS[-1]}/"
+ALLOWED_HOSTS = ["*"]
 
 
 INSTALLED_APPS = [
@@ -33,7 +28,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "config.middleware.performance.PerformanceMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -57,19 +51,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "config.wsgi.application"
 
 
-if config("POSTGRES_ENABLE", cast=bool, default=False):
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql_psycopg2",
-            "NAME": config("POSTGRES_DB"),
-            "USER": config("POSTGRES_USER"),
-            "PASSWORD": config("POSTGRES_PASSWORD"),
-            "HOST": config("POSTGRES_HOST"),
-            "PORT": config("POSTGRES_PORT"),
-        }
-    }
-else:
-    DATABASES = {
+DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
             "NAME": BASE_DIR / "db.sqlite3",
@@ -136,6 +118,3 @@ LOGGING = {
     },
     "loggers": {"": {"level": "INFO", "handlers": ["console", "file"]}},
 }
-
-PERFORMANCE_TIME = config("PERFORMANCE_TIME", cast=int, default=1)
-PERFORMANCE_COUNT_QUERIES = config("PERFORMANCE_COUNT_QUERIES", cast=int, default=20)

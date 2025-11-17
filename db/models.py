@@ -7,6 +7,6 @@ class Table(models.Model):
 
 class Booking(models.Model):
     table = models.ForeignKey(Table, on_delete=models.CASCADE)
-    date = models.DateField()
+    date = models.DateTimeField()
     client_name = models.CharField(max_length=255)
     client_phone = models.CharField(max_length=20)
